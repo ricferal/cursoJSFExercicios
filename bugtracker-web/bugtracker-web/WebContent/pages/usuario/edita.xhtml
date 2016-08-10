@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:t="http://myfaces.apache.org/tomahawk"
+			xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+  <ui:composition  template="/templates/template_principal.xhtml">
+            <ui:define name="corpo">
+		
+		<h1>Editar Usuário</h1>
+	<h:form id="form">
+	  <t:saveState value="#{usuarioBean.usuario}"/>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Nome" for="nome" />
+			<h:inputText id="nome" value="#{usuarioBean.usuario.nome}"/>
+
+			<h:outputLabel value="Login" for="login" />
+			<h:inputText id="login"  value="#{usuarioBean.usuario.login}" readonly="true"/>
+
+			<h:outputLabel value="Senha" for="senha" />
+			<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}"/>
+
+
+             <h:commandLink value="Voltar" immediate="true" action="lista">
+                  <f:ajax execute="@form"/>
+             
+             </h:commandLink>
+			<h:commandButton value="Salvar" action="#{usuarioBean.altera}">
+			   <f:ajax execute="@form" render="@form"/>
+			</h:commandButton>
+
+		</h:panelGrid>
+	</h:form>
+	</ui:define>
+	
+	</ui:composition>
+</html>
